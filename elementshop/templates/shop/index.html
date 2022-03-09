@@ -1,0 +1,34 @@
+{% extends "common/base.html" %}
+
+
+{% block main %}
+
+<a href="{% url 'shop:cart' %}">カートを見る</a>
+
+
+<form action="" method="GET">
+    <select name="order_by">
+        {% for s in sort_list %}
+        <option value="{{ s.key }}" {% if request.GET.order_by == s.key %}selected{% endif %}>{{ s.value }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="並び替え">
+</form>
+
+
+{% for product in products %}
+<div class="border">
+    <div><a href="{% url 'shop:product' product.id %}">{{ product.name }}</a></div>
+    <div>{{ product.price }}</div>
+    <div>在庫数:{{ product.stock }}</div>
+    <form action="{% url 'shop:product' product.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="amount" value="1">
+        <input class="btn btn-outline-success" type="submit" value="カートに入れる">
+    </form>
+</div>
+{% endfor %}
+
+
+{% endblock %}
+

@@ -1,0 +1,23 @@
+img {
+    max-width:100%;
+}
+
+.product_area {
+    display:flex;
+    flex-wrap:wrap;
+}
+.product {
+    width:calc(100%/5);
+    border:solid 1px black;
+}
+.product_title {
+}
+.product_img_area {
+    text-align:center;
+}
+.product_img {
+    object-fit:contain;
+    height:10rem;
+}
+.product_price {
+}
